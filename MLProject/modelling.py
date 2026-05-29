@@ -30,10 +30,10 @@ model = Pipeline([
     ("nb", MultinomialNB())
 ])
 
-with mlflow.start_run(nested=True):   
-    model.fit(X_train, y_train)
-    y_pred = model.predict(X_test)
-    accuracy = accuracy_score(y_test, y_pred)
-    mlflow.log_metric("accuracy", accuracy)
-    mlflow.sklearn.log_model(model, "spam-model")
-    print("Accuracy:", accuracy)
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+
+mlflow.log_metric("accuracy", accuracy)
+mlflow.sklearn.log_model(model, "spam-model")
+print("Accuracy:", accuracy)
