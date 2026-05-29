@@ -8,16 +8,16 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score
 
-# ✅ FIX 1: Tentukan tracking URI yang konsisten
 mlflow.set_tracking_uri("http://127.0.0.1:5000")
 
-# ✅ FIX 2: Arahkan ke experiment yang benar
 mlflow.set_experiment("spam")
 
-# ✅ FIX 3: Pindahkan autolog ke sini
 mlflow.sklearn.autolog()
 
-df = pd.read_csv("data_clean.csv")
+base_path = os.path.dirname(__file__)
+file_path = os.path.join(base_path, "data_clean.csv")
+
+df = pd.read_csv(file_path)
 
 print(df.head())
 print(df.columns)
